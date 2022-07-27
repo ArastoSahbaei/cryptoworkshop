@@ -4,12 +4,12 @@ import { useWeb3 } from "./useWeb3";
 export const App = () => {
   const [address, setAddress] = useState<any>("")
   const [amount, setAmount] = useState<any>(0)
-  const { getCurrentBlock, verifyWalletExtension, getWalletAddress, createPayment, getWalletBalance, signNonce } = useWeb3();
-
-
+  const [number, setNumber] = useState<any>(0)
+  const { getCurrentBlock, verifyWalletExtension, getWalletAddress, createPayment, getWalletBalance, signNonce, getCount, increment, insertNumber } = useWeb3();
 
   return (
     <>
+    <h1>Tillgängliga funktioner med Ethers.js</h1>
       <div onClick={() => verifyWalletExtension()}>1. Verify Wallet Extension</div>
     <hr />
       <div onClick={() => getWalletAddress()}>2. Get Browser Wallet Address</div>
@@ -24,6 +24,15 @@ export const App = () => {
       <input placeholder='amount of Ether to send' onChange={event => setAmount(event.target.value)}/>
       <div onClick={() => createPayment(address, amount)}>6. Create Payment</div>
     <hr />
+    <h1>Smart Contract</h1>
+      <div onClick={() => getCount()}>1. getCount()</div>
+    <hr />
+      <div onClick={() => increment()}>2. increment()</div>
+    <hr />
+      <input onChange={event => setNumber(event.target.value)}/> <br/>
+      <div onClick={() => insertNumber(number)}>3. insertNumber()</div>
+    <hr />
+  
     </>
   );
 };
