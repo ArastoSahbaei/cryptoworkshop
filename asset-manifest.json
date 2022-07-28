@@ -1,0 +1,12 @@
+{
+  "files": {
+    "main.js": "/cryptoworkshop/static/js/main.ce656777.js",
+    "static/js/787.95b2a149.chunk.js": "/cryptoworkshop/static/js/787.95b2a149.chunk.js",
+    "index.html": "/cryptoworkshop/index.html",
+    "main.ce656777.js.map": "/cryptoworkshop/static/js/main.ce656777.js.map",
+    "787.95b2a149.chunk.js.map": "/cryptoworkshop/static/js/787.95b2a149.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/js/main.ce656777.js"
+  ]
+}
