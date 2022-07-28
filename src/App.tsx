@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Election } from "./Election";
 import { useWeb3 } from "./useWeb3";
 
 export const App = () => {
@@ -32,7 +33,7 @@ export const App = () => {
       <input onChange={event => setNumber(event.target.value)}/> <br/>
       <div onClick={() => insertNumber(number)}>3. insertNumber()</div>
     <hr />
-  
+    <Election />
     </>
   );
 };

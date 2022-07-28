@@ -74,7 +74,11 @@ export const useWeb3 = () => {
   };
 
   const getCount = async () => {
-    const contract = new ethers.Contract('0x5310aee3c63Bbb7C6dB290F19178c80C17c7cA15', ABI.counterContract, provider);
+    const contract = new ethers.Contract(
+      "0x5310aee3c63Bbb7C6dB290F19178c80C17c7cA15",
+      ABI.counterContract,
+      provider
+    );
     try {
       const response = await contract.getCount();
       console.log(response.toString());
@@ -84,7 +88,11 @@ export const useWeb3 = () => {
   };
 
   const increment = async () => {
-    const contract = new ethers.Contract('0x5310aee3c63Bbb7C6dB290F19178c80C17c7cA15', ABI.counterContract, provider.getSigner());
+    const contract = new ethers.Contract(
+      "0x5310aee3c63Bbb7C6dB290F19178c80C17c7cA15",
+      ABI.counterContract,
+      provider.getSigner()
+    );
     try {
       const response = await contract.increment();
       console.log(response.toString());
@@ -94,9 +102,49 @@ export const useWeb3 = () => {
   };
 
   const insertNumber = async (number: number) => {
-    const contract = new ethers.Contract('0x5310aee3c63Bbb7C6dB290F19178c80C17c7cA15', ABI.counterContract, provider.getSigner());
+    const contract = new ethers.Contract(
+      "0x5310aee3c63Bbb7C6dB290F19178c80C17c7cA15",
+      ABI.counterContract,
+      provider.getSigner()
+    );
     try {
       const response = await contract.insertNumber(number);
+      console.log(response.toString());
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const candidates = async () => {
+    const contract = new ethers.Contract(
+      "0x8157155a7ad92f5a2301bfDA7F6a2E2897091fC1",
+      ABI.election,
+      provider
+    );
+    try {
+      const response = await contract.candidates(1);
+      const response2 = await contract.candidates(2);
+      const response3 = await contract.candidates(3);
+      const real = [
+        { name: response.name, votes: parseInt(response.voteCount._hex, 16) },
+        { name: response2.name, votes: parseInt(response2.voteCount._hex, 16) },
+        { name: response3.name, votes: parseInt(response3.voteCount._hex, 16) },
+      ];
+      console.log(real);
+      return real;
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const vote = async (number: number) => {
+    const contract = new ethers.Contract(
+      "0x8157155a7ad92f5a2301bfDA7F6a2E2897091fC1",
+      ABI.election,
+      provider.getSigner()
+    );
+    try {
+      const response = await contract.vote(number);
       console.log(response.toString());
     } catch (error) {
       console.log(error);
@@ -113,5 +161,7 @@ export const useWeb3 = () => {
     getCount,
     increment,
     insertNumber,
+    candidates,
+    vote,
   };
 };
