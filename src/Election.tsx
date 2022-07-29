@@ -25,7 +25,7 @@ export const Election = () => {
   useEffect(() => {
     const intervalId = setInterval(() => {
       retrieveCandidates();
-    }, 1000 * 5); // in milliseconds
+    }, 1000 * 5);
     return () => clearInterval(intervalId);
   }, [list]);
 
